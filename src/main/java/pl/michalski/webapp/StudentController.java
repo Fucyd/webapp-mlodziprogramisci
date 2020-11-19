@@ -11,11 +11,9 @@ import java.util.List;
 public class StudentController {
 
     private StudentRepository studentRepository;
-    private CarRepository carRepository;
     @Autowired
-    public StudentController(StudentRepository studentRepository, CarRepository carRepository) {
+    public StudentController(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
-        this.carRepository = carRepository;
     }
 
     @GetMapping("/")
@@ -25,11 +23,4 @@ public class StudentController {
         return "index";
     }
 
-    @GetMapping("/car")
-    public String carPage(Model model){
-        //lista, ktora posiada obiekty z bazy danych (carRepository.findAll())
-        //dodaje ją jako atrybut do modelu strony
-        //zwracam plik html, który wyświetli mi samochody z bazy danych
-        return "0";
-    }
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .cars-style{
+            background-color: lightcoral;
+            border: 2px solid black;
+            margin-bottom:10px;
+        }
+
+        .cars-style > img {
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+<h1>Samochody</h1>
+
+<div th:class="cars-style" th:each="car : ${cars}">
+    <h2 th:text="${car.producent}">Producent</h2>
+    <p th:text="${car.model}">Model</p>
+    <p th:text="${car.price}">Cena</p>
+    <img th:src="${car.imageUrl}" alt="zdjecie samochodu">
+
+</div>
+
+
+</body>
+</html>
