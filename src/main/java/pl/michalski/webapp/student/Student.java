@@ -1,4 +1,4 @@
-package pl.michalski.webapp;
+package pl.michalski.webapp.student;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

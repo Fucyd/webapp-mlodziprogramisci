@@ -1,4 +1,4 @@
-package pl.michalski.webapp;
+package pl.michalski.webapp.student;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
