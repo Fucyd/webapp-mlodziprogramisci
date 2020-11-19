@@ -1,0 +1,9 @@
+.obiekt-student{
+    background-color: azure;
+    border: 2px solid slategray;
+}
+
+.lista-miast{
+    background-color: slategray;
+    border: 3px dotted green;
+}

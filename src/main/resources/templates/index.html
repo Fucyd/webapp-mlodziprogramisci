@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
+
+<!--    <style>-->
+<!--        .obiekt-student{-->
+<!--            background-color: azure;-->
+<!--            border: 2px solid slategray;-->
+<!--        }-->
+<!--    </style>-->
+</head>
+<body>
+<h1>Najlepsi Uczniowie</h1>
+
+<div th:class="obiekt-student" th:each="student : ${studenciBazaDanych}">
+    <p th:text="${student.name}">imie </p>
+    <p th:text="${student.age}">wiek </p>
+
+</div>
+</body>
+</html>
