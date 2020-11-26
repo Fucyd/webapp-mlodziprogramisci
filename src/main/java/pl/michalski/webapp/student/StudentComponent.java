@@ -16,7 +16,7 @@ public class StudentComponent {
     }
 
     //metoda, ktora zwraca obiekty z bazy danych
-    public List<Student> returnAllStudents(){
+    public List<Student> getAllStudents(){
         return studentRepository.findAll();
     }
 

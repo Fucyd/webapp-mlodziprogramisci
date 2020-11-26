@@ -6,12 +6,13 @@
 </head>
 <body>
 <h1> Nowy Student </h1>
+
 <form action="#" th:action="@{/student/new}" th:object="${newStudent}" method="post">
     <p>Imie:</p>
-    <input type="text" th:field="*{name}" placeholder="Wpisz imie">
+    <input type="text" th:field="*{name}">
     <p>Wiek:</p>
-    <input type="number" th:field="*{age}" placeholder="Wpisz wiek">
-    <button type="submit" value="submit">Submit</button>
+    <input type="number" th:field="*{age}">
+    <button type="submit">Zapisz nowego studenta</button>
 </form>
 </body>
 </html>

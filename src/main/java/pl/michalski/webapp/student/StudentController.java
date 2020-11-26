@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,21 +22,25 @@ public class StudentController {
 
     @GetMapping("/")
     public String mainPage(Model model){
-        List<Student> studentList = studentComponent.returnAllStudents();
+        List<Student> studentList = studentComponent.getAllStudents();
         model.addAttribute("studenciBazaDanych", studentList);
         return "index";
     }
 
     @GetMapping("/student/new")
-    public String showFormNewStudent(Model model){
-        model.addAttribute("newStudent", new StudentSave());
+    public String newStudentForm(Model model){
+        StudentSave studentSave = new StudentSave();
+        model.addAttribute("newStudent", studentSave);
         return "new-student-form";
     }
 
     @PostMapping("/student/new")
-    public String formNewStudentProcessing(@ModelAttribute("newStudent") StudentSave studentSave){
+    public String newStudentProcessing(@ModelAttribute("newStudent") StudentSave studentSave){
         studentComponent.saveNewStudent(studentSave);
         return "redirect:/";
     }
+
+
+
 
 }

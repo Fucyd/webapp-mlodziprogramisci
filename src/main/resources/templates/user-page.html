@@ -7,11 +7,11 @@
 
 </head>
 <body>
-<h1>Najlepsi Uczniowie</h1>
+<h1>Najlepsi użytkownicy</h1>
 
-<div th:class="obiekt-student" th:each="student : ${studenciBazaDanych}">
-    <p th:text="${student.name}">imie </p>
-    <p th:text="${student.age}">wiek </p>
+<div th:class="obiekt-student" th:each="user : ${usersFromDatabase}">
+    <p th:text="${user.name}">imie </p>
+    <p th:text="${user.lastName}">wiek </p>
 </div>
 </body>
 </html>
