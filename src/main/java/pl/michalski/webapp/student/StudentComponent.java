@@ -32,5 +32,4 @@ public class StudentComponent {
         studentRepository.save(student);
     }
 
-
 }

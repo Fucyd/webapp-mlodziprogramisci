@@ -8,10 +8,12 @@
 </head>
 <body>
 <h1>Najlepsi użytkownicy</h1>
-
+<a th:href="@{/user/new}">Nowy Użytkownik</a>
 <div th:class="obiekt-student" th:each="user : ${usersFromDatabase}">
     <p th:text="${user.name}">imie </p>
     <p th:text="${user.lastName}">wiek </p>
+    <a th:href="@{'/user/delete/' + ${user.uuid}}">Usuń Użytkownika</a>
+
 </div>
 </body>
 </html>

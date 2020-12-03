@@ -3,13 +3,12 @@ package pl.michalski.webapp.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.michalski.webapp.student.Student;
 import pl.michalski.webapp.student.StudentSave;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class UserController {
@@ -37,6 +36,15 @@ public class UserController {
     @PostMapping("/user/new")
     public String newUserProcessing(@ModelAttribute("newUser") UserSave userSave) {
         userComponent.saveNewUser(userSave);
-        return "redirect:/";
+        return "redirect:/user";
+    }
+
+    @RequestMapping("/user/delete/{uuid}")
+    public String deleteUser(@PathVariable("uuid") UUID uuid){
+        System.out.println("Start metody DELETEUSER");
+        System.out.println("UUID uzytkownika: " + uuid);
+        userComponent.deleteUser(uuid);
+        System.out.println("Koniec metody DELETEUSER");
+        return "redirect:/user";
     }
 }
