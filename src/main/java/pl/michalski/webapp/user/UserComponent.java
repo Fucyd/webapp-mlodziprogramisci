@@ -2,6 +2,7 @@ package pl.michalski.webapp.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -33,10 +34,8 @@ public class UserComponent {
 
     }
 
+    @Transactional
     public void deleteUser(UUID uuid){
-        System.out.println("Start metody DELETEUSER - userComponent");
-        System.out.println("uuid - userComponent: " + uuid);
         userRepository.deleteByUuid(uuid);
-        System.out.println("Koniec metody DELETEUSER - userComponent");
     }
 }
