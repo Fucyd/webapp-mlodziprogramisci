@@ -40,6 +40,12 @@ public class UserController {
             bindingResult.rejectValue("confirmPassword", "confirmPassword", "Hasła nie są identyczne");
             return "new-user-form";
         }
+        if(userComponent.checkIfUserByEmailExists(userSave.getEmail())){
+            bindingResult.rejectValue("email", "emailExists", "Hasła nie są identyczne");
+            return "new-user-form";
+        }
+        // sprawdzenie czy uzytkownik o podanym email juz istnieje.
+
         userComponent.saveNewUser(userSave);
         return "redirect:/user";
     }
