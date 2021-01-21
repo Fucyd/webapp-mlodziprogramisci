@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
@@ -38,6 +39,13 @@ public class StudentController {
     public String newStudentProcessing(@ModelAttribute("newStudent") StudentSave studentSave){
         studentComponent.saveNewStudent(studentSave);
         return "redirect:/";
+    }
+
+    @GetMapping("/student/school/{schoolName}")
+    public String showStudentsBySchool(@PathVariable("schoolName") String schoolName, Model model){
+        List<Student> studentList = studentComponent.getAllStudentsBySchool(schoolName);
+        model.addAttribute("studentsBySchool", studentList);
+        return "students-school";
     }
 
 

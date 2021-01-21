@@ -2,6 +2,7 @@ package pl.michalski.webapp.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pl.michalski.webapp.school.SchoolRepository;
 
 import java.util.List;
 
@@ -9,10 +10,12 @@ import java.util.List;
 public class StudentComponent {
 
     private StudentRepository studentRepository;
+    private SchoolRepository schoolRepository;
 
     @Autowired
-    public StudentComponent(StudentRepository studentRepository) {
+    public StudentComponent(StudentRepository studentRepository, SchoolRepository schoolRepository) {
         this.studentRepository = studentRepository;
+        this.schoolRepository = schoolRepository;
     }
 
     //metoda, ktora zwraca obiekty z bazy danych
@@ -31,5 +34,13 @@ public class StudentComponent {
         student.setAge(studentSave.getAge());
         studentRepository.save(student);
     }
+
+    public List<Student> getAllStudentsBySchool(String schoolName){
+//        return studentRepository
+//                .findAllBySchool(schoolRepository.findByName(schoolName));
+        return studentRepository.findAllBySchool_Name(schoolName);
+
+    }
+
 
 }

@@ -1,9 +1,8 @@
 package pl.michalski.webapp.student;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import pl.michalski.webapp.school.School;
+
+import javax.persistence.*;
 
 @Entity  //adnotacja, która sprawia, że ta klasa jest rozumiana jako model tabeli bazy danych
 public class Student {
@@ -14,6 +13,16 @@ public class Student {
     private Integer id;
     private String name;
     private Integer age;
+    @ManyToOne
+    private School school;
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
 
     public Integer getId() {
         return id;
