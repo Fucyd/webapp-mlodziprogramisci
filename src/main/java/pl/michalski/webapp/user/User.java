@@ -1,9 +1,7 @@
 package pl.michalski.webapp.user;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -17,6 +15,17 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+
+    @ManyToMany
+    private Set<Authority> authorities;
+
+    public Set<Authority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Set<Authority> authorities) {
+        this.authorities = authorities;
+    }
 
     public Integer getId() {
         return id;

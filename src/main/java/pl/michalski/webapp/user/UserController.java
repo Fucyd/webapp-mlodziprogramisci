@@ -12,21 +12,21 @@ import java.util.UUID;
 
 @Controller
 public class UserController {
-    private UserComponent userComponent;
+    private UserService userService;
 
     @Autowired
-    public UserController(UserComponent userComponent) {
-        this.userComponent = userComponent;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/user")
     public String mainPageUsers(Model model) {
-        List<User> userList = userComponent.getAllUsers();
+        List<User> userList = userService.getAllUsers();
         model.addAttribute("usersFromDatabase", userList);
         return "user-page";
     }
 
-    @GetMapping("/user/new")
+    @GetMapping("/registration")
     public String newUserForm(Model model) {
         UserSave userSave = new UserSave();
         model.addAttribute("newUser", userSave);
@@ -40,19 +40,19 @@ public class UserController {
             bindingResult.rejectValue("confirmPassword", "confirmPassword", "Hasła nie są identyczne");
             return "new-user-form";
         }
-        if(userComponent.checkIfUserByEmailExists(userSave.getEmail())){
+        if(userService.checkIfUserByEmailExists(userSave.getEmail())){
             bindingResult.rejectValue("email", "emailExists", "Hasła nie są identyczne");
             return "new-user-form";
         }
         // sprawdzenie czy uzytkownik o podanym email juz istnieje.
 
-        userComponent.saveNewUser(userSave);
+        userService.saveNewUser(userSave);
         return "redirect:/user";
     }
 
     @GetMapping("/user/delete/{uuid}")
     public String deleteUser(@PathVariable("uuid") UUID uuid){
-        userComponent.deleteUser(uuid);
+        userService.deleteUser(uuid);
         return "redirect:/user";
     }
 }
