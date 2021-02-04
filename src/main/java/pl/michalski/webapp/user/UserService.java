@@ -11,12 +11,15 @@ import java.util.UUID;
 
 @Service
 public class UserService {
-
+    private AuthorityRepository authorityRepository;
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(AuthorityRepository authorityRepository,
+                       UserRepository userRepository,
+                       PasswordEncoder passwordEncoder) {
+        this.authorityRepository = authorityRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
@@ -34,11 +37,8 @@ public class UserService {
 
     public void saveNewUser(UserSave userSave){
         User user = new User();
-        Authority authority = new Authority();
-        authority.setRole("ROLE_USER");
-        HashSet<Authority> authorities = new HashSet<>();
-        authorities.add(authority);
-        user.setAuthorities(authorities);
+
+        user.setAuthorities(getUserRole());
         user.setUuid(UUID.randomUUID());
         user.setName(userSave.getName());
         user.setLastName(userSave.getLastName());
@@ -47,6 +47,20 @@ public class UserService {
         userRepository.save(user);
 
     }
+
+    //Stworzyć metodę prywatną, która zwróci HashSet<Authority> o nazwie getUserRole()
+    // która ma pobrać z  bazy danych Obiekt Roli Użytkownika (Authority),
+    // którego pole Role jest "ROLE_USER"
+    // i dodać ten obiekt do nowego HashSetu. [ HashSet<Authority> hashSet = new Hash...]
+    // na koniec zwrócić ten hashSet.
+
+    private HashSet<Authority> getUserRole(){
+        Authority authority = authorityRepository.findByRole("ROLE_USER").get();
+        HashSet<Authority> authorities = new HashSet<>();
+        authorities.add(authority);
+        return authorities;
+    }
+
 
     @Transactional
     public void deleteUser(UUID uuid){

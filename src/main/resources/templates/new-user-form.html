@@ -7,7 +7,7 @@
 <body>
 <h1> Nowy Student </h1>
 
-<form action="#" th:action="@{/user/new}" th:object="${newUser}" method="post">
+<form action="#" th:action="@{/registration}" th:object="${newUser}" method="post">
     <p>Name:</p>
     <input type="text" th:field="*{name}">
     <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>

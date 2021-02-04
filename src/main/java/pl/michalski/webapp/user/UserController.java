@@ -33,7 +33,7 @@ public class UserController {
         return "new-user-form";
     }
 
-    @PostMapping("/user/new")
+    @PostMapping("/registration")
     public String newUserProcessing(@ModelAttribute("newUser") @Valid UserSave userSave, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) return "new-user-form";
         if(!userSave.getPassword().equals(userSave.getConfirmPassword())) {
@@ -45,8 +45,11 @@ public class UserController {
             return "new-user-form";
         }
         // sprawdzenie czy uzytkownik o podanym email juz istnieje.
-
-        userService.saveNewUser(userSave);
+        try{
+            userService.saveNewUser(userSave);
+        }catch (RuntimeException exception){
+            exception.printStackTrace();
+        }
         return "redirect:/user";
     }
 
