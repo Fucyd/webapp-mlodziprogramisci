@@ -2,7 +2,7 @@ package pl.michalski.webapp.user;
 
 import java.util.UUID;
 
-public class UserDelete {
+class UserDelete {
     UUID uuid;
 
     public UUID getUuid() {

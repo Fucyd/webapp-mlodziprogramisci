@@ -17,13 +17,21 @@ public class LoadDatabase implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        saveUserAuthority();
+        addAuthorities();
     }
 
-    private void saveUserAuthority(){
-        Authority authority = new Authority();
-        authority.setRole("ROLE_USER");
-        authorityRepository.save(authority);
+    private void addAuthorities(){
+        Authority userAuthority = new Authority();
+        userAuthority.setRole("ROLE_USER");
+        authorityRepository.save(userAuthority);
+
+        Authority moderatorAuthority = new Authority();
+        moderatorAuthority.setRole("ROLE_MODERATOR");
+        authorityRepository.save(moderatorAuthority);
+
+        Authority adminAuthority = new Authority();
+        adminAuthority.setRole("ROLE_ADMIN");
+        authorityRepository.save(adminAuthority);
     }
 
 
