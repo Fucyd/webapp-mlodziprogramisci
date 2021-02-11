@@ -2,18 +2,20 @@ package pl.michalski.webapp.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.michalski.webapp.school.SchoolRepository;
 
 import java.util.List;
+import java.util.UUID;
 
-@Component
-public class StudentComponent {
+@Service
+public class StudentService {
 
     private StudentRepository studentRepository;
     private SchoolRepository schoolRepository;
 
     @Autowired
-    public StudentComponent(StudentRepository studentRepository, SchoolRepository schoolRepository) {
+    public StudentService(StudentRepository studentRepository, SchoolRepository schoolRepository) {
         this.studentRepository = studentRepository;
         this.schoolRepository = schoolRepository;
     }
@@ -30,15 +32,16 @@ public class StudentComponent {
 
     public void saveNewStudent(StudentSave studentSave){
         Student student = new Student();
+        student.setUuid(UUID.randomUUID());
         student.setName(studentSave.getName());
         student.setAge(studentSave.getAge());
         studentRepository.save(student);
     }
 
-    public List<Student> getAllStudentsBySchool(String schoolName){
+    public List<Student> getAllStudentsBySchool(UUID uuid){
 //        return studentRepository
 //                .findAllBySchool(schoolRepository.findByName(schoolName));
-        return studentRepository.findAllBySchool_Name(schoolName);
+        return studentRepository.findAllBySchool_Uuid(uuid);
 
     }
 

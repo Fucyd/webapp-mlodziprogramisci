@@ -3,6 +3,7 @@ package pl.michalski.webapp.student;
 import pl.michalski.webapp.school.School;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity  //adnotacja, która sprawia, że ta klasa jest rozumiana jako model tabeli bazy danych
 public class Student {
@@ -11,10 +12,20 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO) //adnotacja - ustawia pierwsze pole pod sobą jako wartość generowaną,
     // a w nawiasach informacja, ze sposób generowania ma być automatyczny
     private Integer id;
+    private UUID uuid;
     private String name;
     private Integer age;
     @ManyToOne
     private School school;
+
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
 
     public School getSchool() {
         return school;
