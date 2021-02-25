@@ -8,11 +8,11 @@
 </head>
 <body>
 <h1>Szkoły</h1>
-
+<a th:href="@{/school/new}">Dodaj szkołę</a>
 <div th:each="school : ${allSchools}">
-    <p th:text="${school.name}">imie </p>
-    <p th:text="${school.city}">wiek </p>
-    <a class="link" th:href="@{'/student/school/' + ${school.name}}">Lista uczniów</a>
+    <p th:text="${school.name}">nazwa szkoły </p>
+    <p th:text="${school.city}">miasto </p>
+    <a class="link" th:href="@{'/student/school/' + ${school.uuid}}">Lista uczniów</a>
     <hr/>
 </div>
 </body>

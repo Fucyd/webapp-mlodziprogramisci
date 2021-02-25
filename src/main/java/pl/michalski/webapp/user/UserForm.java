@@ -6,7 +6,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-public class UserSave {
+public class UserForm {
     @NotEmpty(message = "To pole nie może być puste.")
     private String name;
     @NotEmpty(message = "To pole nie może być puste.")

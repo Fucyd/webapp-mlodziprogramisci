@@ -30,19 +30,19 @@ public class StudentController {
 
     @GetMapping("/student/new")
     public String newStudentForm(Model model){
-        StudentSave studentSave = new StudentSave();
-        model.addAttribute("newStudent", studentSave);
+        StudentForm studentForm = new StudentForm();
+        model.addAttribute("newStudent", studentForm);
         return "new-student-form";
     }
 
     @PostMapping("/student/new")
-    public String newStudentProcessing(@ModelAttribute("newStudent") StudentSave studentSave){
-        studentService.saveNewStudent(studentSave);
+    public String newStudentProcessing(@ModelAttribute("newStudent") StudentForm studentForm){
+        studentService.saveNewStudent(studentForm);
         return "redirect:/";
     }
 
     @GetMapping("/student/school/{uuid}")
-    public String showStudentsBySchool(@PathVariable("schoolName") UUID uuid, Model model){
+    public String showStudentsBySchool(@PathVariable("uuid") UUID uuid, Model model){
         List<Student> studentList = studentService.getAllStudentsBySchool(uuid);
         model.addAttribute("studentsBySchool", studentList);
         return "students-school";

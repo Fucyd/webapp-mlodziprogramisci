@@ -1,6 +1,6 @@
 package pl.michalski.webapp.student;
 
-public class StudentSave {
+public class StudentForm {
     private String name;
     private Integer age;
 

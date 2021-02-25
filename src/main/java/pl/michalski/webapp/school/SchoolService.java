@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class SchoolService {
@@ -17,5 +18,13 @@ public class SchoolService {
 
     public List<School> getAllSchools(){
         return schoolRepository.findAll();
+    }
+
+    public void saveSchool(SchoolForm schoolForm){
+        School school = new School();
+        school.setUuid(UUID.randomUUID());
+        school.setName(schoolForm.getName());
+        school.setCity(schoolForm.getCity());
+        schoolRepository.save(school);
     }
 }

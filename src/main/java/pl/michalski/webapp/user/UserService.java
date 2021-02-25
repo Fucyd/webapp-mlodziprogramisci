@@ -35,15 +35,15 @@ public class UserService {
         return userRepository.findByEmail(email).isPresent();
     }
 
-    public void saveNewUser(UserSave userSave){
+    public void saveNewUser(UserForm userForm){
         User user = new User();
 
         user.setAuthorities(getUserRole());
         user.setUuid(UUID.randomUUID());
-        user.setName(userSave.getName());
-        user.setLastName(userSave.getLastName());
-        user.setEmail(userSave.getEmail());
-        user.setPassword(passwordEncoder.encode(userSave.getPassword()));
+        user.setName(userForm.getName());
+        user.setLastName(userForm.getLastName());
+        user.setEmail(userForm.getEmail());
+        user.setPassword(passwordEncoder.encode(userForm.getPassword()));
         userRepository.save(user);
 
     }

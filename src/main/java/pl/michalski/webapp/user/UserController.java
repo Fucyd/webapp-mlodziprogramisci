@@ -28,25 +28,25 @@ public class UserController {
 
     @GetMapping("/registration")
     public String newUserForm(Model model) {
-        UserSave userSave = new UserSave();
-        model.addAttribute("newUser", userSave);
+        UserForm userForm = new UserForm();
+        model.addAttribute("newUser", userForm);
         return "new-user-form";
     }
 
     @PostMapping("/registration")
-    public String newUserProcessing(@ModelAttribute("newUser") @Valid UserSave userSave, BindingResult bindingResult) {
+    public String newUserProcessing(@ModelAttribute("newUser") @Valid UserForm userForm, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) return "new-user-form";
-        if(!userSave.getPassword().equals(userSave.getConfirmPassword())) {
+        if(!userForm.getPassword().equals(userForm.getConfirmPassword())) {
             bindingResult.rejectValue("confirmPassword", "confirmPassword", "Hasła nie są identyczne");
             return "new-user-form";
         }
-        if(userService.checkIfUserByEmailExists(userSave.getEmail())){
+        if(userService.checkIfUserByEmailExists(userForm.getEmail())){
             bindingResult.rejectValue("email", "emailExists", "Hasła nie są identyczne");
             return "new-user-form";
         }
         // sprawdzenie czy uzytkownik o podanym email juz istnieje.
         try{
-            userService.saveNewUser(userSave);
+            userService.saveNewUser(userForm);
         }catch (RuntimeException exception){
             exception.printStackTrace();
         }

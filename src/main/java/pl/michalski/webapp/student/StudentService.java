@@ -1,7 +1,6 @@
 package pl.michalski.webapp.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import pl.michalski.webapp.school.SchoolRepository;
 
@@ -30,18 +29,16 @@ public class StudentService {
     //formularz --> obiekt StudentSave ---> controler (PostMapping)
     // --> StudentComponent --> zamiana z obiektu klasy StudentSave na Student
 
-    public void saveNewStudent(StudentSave studentSave){
+    public void saveNewStudent(StudentForm studentForm){
         Student student = new Student();
         student.setUuid(UUID.randomUUID());
-        student.setName(studentSave.getName());
-        student.setAge(studentSave.getAge());
+        student.setName(studentForm.getName());
+        student.setAge(studentForm.getAge());
         studentRepository.save(student);
     }
 
-    public List<Student> getAllStudentsBySchool(UUID uuid){
-//        return studentRepository
-//                .findAllBySchool(schoolRepository.findByName(schoolName));
-        return studentRepository.findAllBySchool_Uuid(uuid);
+    public List<Student> getAllStudentsBySchool(UUID schoolUuid){
+        return studentRepository.findAllBySchool_Uuid(schoolUuid);
 
     }
 
