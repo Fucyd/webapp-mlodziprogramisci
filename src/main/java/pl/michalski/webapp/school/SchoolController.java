@@ -6,10 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.michalski.webapp.user.UserForm;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @Controller
 public class SchoolController {
@@ -43,5 +45,20 @@ public class SchoolController {
         }
         schoolService.saveSchool(schoolForm);
         return "redirect:/school";
+    }
+
+    @GetMapping("/student/school/add/{studentUuid}")
+    public String addStudentToSchoolPage(@PathVariable("studentUuid") UUID studentUuid,
+                                      Model model){
+        model.addAttribute("schools", schoolService.getAllSchools());
+        model.addAttribute("studentUuid", studentUuid);
+        return "add-student-to-school-page";
+    }
+
+    @GetMapping("/student/school/add/{studentUuid}/{schoolUuid}")
+    public String processAddStudentToSchool(@PathVariable("studentUuid") UUID studentUuid,
+                                            @PathVariable("schoolUuid") UUID schoolUuid){
+        return schoolService.addStudentToSchool(studentUuid, schoolUuid);
+
     }
 }

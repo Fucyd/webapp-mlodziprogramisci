@@ -3,6 +3,7 @@ package pl.michalski.webapp.school;
 import pl.michalski.webapp.student.Student;
 
 import javax.persistence.*;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,14 +17,14 @@ public class School {
     private String name;
     private String city;
     @OneToMany(mappedBy = "school")
-    private List<Student> student;
+    private List<Student> students = new LinkedList<>();
 
-    public List<Student> getStudent() {
-        return student;
+    public List<Student> getStudents() {
+        return students;
     }
 
-    public void setStudent(List<Student> student) {
-        this.student = student;
+    public void setStudents(List<Student> student) {
+        this.students = student;
     }
 
     public Long getId() {

@@ -7,11 +7,12 @@
 
 </head>
 <body>
-<h1>Najlepsi Uczniowie</h1>
+<h1>Wszyscy Uczniowie</h1>
 <a class="link" th:href="@{/student/new}">Nowy uczeń</a>
 <div th:class="obiekt-student" th:each="student : ${studenciBazaDanych}">
     <p th:text="${student.name}">imie </p>
     <p th:text="${student.age}">wiek </p>
+    <a th:href="@{'/student/school/add/' + ${student.uuid}}">Dodaj do szkoły</a>
 </div>
 </body>
 </html>

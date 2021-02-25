@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+<h1>Szkoły</h1>
+<a th:href="@{/school/new}">Dodaj szkołę</a>
+<div th:each="school : ${schools}">
+    <p th:text="${school.name}">nazwa szkoły </p>
+    <p th:text="${school.city}">miasto </p>
+    <a class="link" th:href="@{'/student/school/add/'+${studentUuid} + '/' + ${school.uuid}}">Dodaj do tej szkoły</a>
+    <hr/>
+</div>
+</body>
+</html>

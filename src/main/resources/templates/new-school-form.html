@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> Nowa Szkoła </h1>
+
+<form action="#" th:action="@{/school/new}" th:object="${newSchool}" method="post">
+    <p>Nazwa szkoły:</p>
+    <input type="text" th:field="*{name}">
+    <p>Miasto:</p>
+    <input type="text" th:field="*{city}">
+    <button type="submit">Dodaj szkołę</button>
+</form>
+</body>
+</html>

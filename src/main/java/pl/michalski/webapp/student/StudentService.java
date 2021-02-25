@@ -39,7 +39,6 @@ public class StudentService {
 
     public List<Student> getAllStudentsBySchool(UUID schoolUuid){
         return studentRepository.findAllBySchool_Uuid(schoolUuid);
-
     }
 
 
