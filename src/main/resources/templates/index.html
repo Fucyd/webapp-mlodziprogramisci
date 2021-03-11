@@ -4,15 +4,42 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
-
+    <link href="webjars/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>Wszyscy Uczniowie</h1>
-<a class="link" th:href="@{/student/new}">Nowy uczeń</a>
-<div th:class="obiekt-student" th:each="student : ${studenciBazaDanych}">
-    <p th:text="${student.name}">imie </p>
-    <p th:text="${student.age}">wiek </p>
-    <a th:href="@{'/student/school/add/' + ${student.uuid}}">Dodaj do szkoły</a>
+<div class="container-fluid">
+    <div>
+        <!-- Tutaj będzie panel boczny strony -->
+    </div>
+    <div class="bg-light m-auto">
+        <div class="d-flex justify-content-center">
+            <h1 class="font-weight-bold mt-2">Wszyscy Uczniowie</h1>
+        </div>
+        <a class="btn btn-primary mb-1" th:href="@{/student/new}">Nowy uczeń</a>
+        <div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Imię</th>
+                    <th scope="col">Wiek</th>
+                    <th scope="col">Dodaj do szkoły</th>
+                </tr>
+                </thead>
+                <tbody th:each="student : ${studenciBazaDanych}">
+                <tr>
+                    <td><p th:text="${student.name}">imie </p></td>
+                    <td><p th:text="${student.age}">wiek </p></td>
+                    <td>
+                        <a class="btn btn-success" th:href="@{'/student/school/add/' + ${student.uuid}}">
+                            Dodaj do szkoły</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>
