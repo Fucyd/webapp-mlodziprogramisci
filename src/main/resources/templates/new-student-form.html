@@ -11,7 +11,10 @@
     <p>Imie:</p>
     <input type="text" th:field="*{name}">
     <p>Wiek:</p>
+    <input type="text" th:field="*{lastName}">
     <input type="number" th:field="*{age}">
+    <input type="number" step="0.01" th:field="*{gradesAverage}">
+
     <button type="submit">Zapisz nowego studenta</button>
 </form>
 </body>

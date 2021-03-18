@@ -49,8 +49,10 @@ public class LoadDatabase implements CommandLineRunner {
     private void addStudent1(){
         Student student = new Student();
         student.setUuid(UUID.randomUUID());
-        student.setName("Ksawery");
+        student.setFirstName("Ksawery");
+        student.setLastName("Wiśniewski");
         student.setAge(18);
+        student.setGradesAverage(3.5);
         studentRepository.save(student);
     }
 
@@ -58,7 +60,9 @@ public class LoadDatabase implements CommandLineRunner {
     private void addStudent2(){
         Student student = new Student();
         student.setUuid(UUID.randomUUID());
-        student.setName("Jacek");
+        student.setFirstName("Jacek");
+        student.setLastName("Marcinek");
+        student.setGradesAverage(3.8);
         student.setAge(17);
         studentRepository.save(student);
     }

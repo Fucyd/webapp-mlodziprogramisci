@@ -21,14 +21,19 @@
                 <thead>
                 <tr>
                     <th scope="col">Imię</th>
+                    <th scope="col">Nazwisko</th>
                     <th scope="col">Wiek</th>
+                    <th scope="col">Średnia ocen z zeszłego roku</th>
                     <th scope="col">Dodaj do szkoły</th>
                 </tr>
                 </thead>
                 <tbody th:each="student : ${studenciBazaDanych}">
                 <tr>
-                    <td><p th:text="${student.name}">imie </p></td>
+                    <td><p th:text="${student.firstName}">imie </p></td>
+                    <td><p th:text="${student.lastName}">wiek </p></td>
                     <td><p th:text="${student.age}">wiek </p></td>
+                    <td><p th:text="${student.gradesAverage}">wiek </p></td>
+
                     <td>
                         <a class="btn btn-success" th:href="@{'/student/school/add/' + ${student.uuid}}">
                             Dodaj do szkoły</a>

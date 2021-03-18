@@ -4,16 +4,43 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
-
+    <link href="webjars/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>Szkoły</h1>
-<a th:href="@{/school/new}">Dodaj szkołę</a>
-<div th:each="school : ${allSchools}">
-    <p th:text="${school.name}">nazwa szkoły </p>
-    <p th:text="${school.city}">miasto </p>
-    <a class="link" th:href="@{'/student/school/' + ${school.uuid}}">Lista uczniów</a>
-    <hr/>
+<div class="container-fluid">
+    <div>
+        <!-- Tutaj będzie panel boczny strony -->
+    </div>
+    <div class="bg-light m-auto">
+        <div class="d-flex justify-content-center">
+            <h1 class="font-weight-bold mt-2">Wszyscy Uczniowie</h1>
+        </div>
+        <a class="btn btn-primary mb-1" th:href="@{/school/new}">Dodaj szkołę</a>
+        <div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Nazwa Szkoły</th>
+                    <th scope="col">Miasto</th>
+                    <th scope="col">Lista Uczniów</th>
+                </tr>
+                </thead>
+                <tbody th:each="school : ${allSchools}">
+                <tr>
+                    <td><p th:text="${school.name}">Nazwa Szkoły </p></td>
+                    <td><p th:text="${school.city}">Miasto </p></td>
+                    <td>
+                        <a class="btn btn-success" th:href="@{'/student/school/' + ${school.uuid}}">Lista uczniów</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </div>
 </body>
 </html>
+

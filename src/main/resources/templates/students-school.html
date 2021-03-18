@@ -7,7 +7,7 @@
 <body>
 <h1>Uczniowie ze szkoły</h1>
 <div th:each="student : ${studentsBySchool}">
-    <p th:text="${student.name}">Name</p>
+    <p th:text="${student.firstName}">Name</p>
     <p th:text="${student.age}">Age</p>
 </div>
 

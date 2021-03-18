@@ -32,8 +32,10 @@ public class StudentService {
     public void saveNewStudent(StudentForm studentForm){
         Student student = new Student();
         student.setUuid(UUID.randomUUID());
-        student.setName(studentForm.getName());
+        student.setFirstName(studentForm.getName());
         student.setAge(studentForm.getAge());
+        student.setLastName(studentForm.getLastName());
+        student.setGradesAverage(studentForm.getGradesAverage());
         studentRepository.save(student);
     }
 

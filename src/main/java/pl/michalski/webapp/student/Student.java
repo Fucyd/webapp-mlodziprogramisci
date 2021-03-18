@@ -13,8 +13,12 @@ public class Student {
     // a w nawiasach informacja, ze sposób generowania ma być automatyczny
     private Integer id;
     private UUID uuid;
-    private String name;
+    private String firstName;
+    private String lastName;
     private Integer age;
+    private String city;
+    private Long phoneNumber;
+    private Double gradesAverage;
     @ManyToOne
     private School school;
 
@@ -43,12 +47,12 @@ public class Student {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public Integer getAge() {
@@ -57,5 +61,37 @@ public class Student {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(Long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Double getGradesAverage() {
+        return gradesAverage;
+    }
+
+    public void setGradesAverage(Double gradesAverage) {
+        this.gradesAverage = gradesAverage;
     }
 }
